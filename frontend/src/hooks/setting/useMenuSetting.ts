@@ -92,21 +92,11 @@ export function useMenuSetting() {
   });
 
   const getRealWidth = computed(() => {
-    if (unref(getIsMixSidebar)) {
-      return unref(getCollapsed) && !unref(getMixSideFixed)
-        ? unref(getMiniWidthNumber)
-        : unref(getMenuWidth);
-    }
-    return unref(getCollapsed) ? unref(getMiniWidthNumber) : unref(getMenuWidth);
+    return  unref(getMiniWidthNumber)
   });
 
   const getMiniWidthNumber = computed(() => {
-    const { collapsedShowTitle, siderHidden } = appStore.getMenuSetting;
-    return siderHidden
-      ? 0
-      : collapsedShowTitle
-        ? SIDE_BAR_SHOW_TIT_MINI_WIDTH
-        : SIDE_BAR_MINI_WIDTH;
+    return SIDE_BAR_MINI_WIDTH
   });
 
   const getCalcContentWidth = computed(() => {

@@ -8,7 +8,6 @@ import { REDIRECT_NAME } from '@/router/constant';
 import { isHttpUrl } from '@/utils/is';
 import { openWindow } from '@/utils';
 
-import { useMultipleTabStore } from '@/store/modules/multipleTab';
 
 export type PathAsPageEnum<T> = T extends { path: string } ? T & { path: PageEnum } : T;
 export type RouteLocationRawEx = PathAsPageEnum<RouteLocationRaw>;
@@ -52,26 +51,6 @@ export function useGo(_router?: Router) {
     if (isReplace) {
       replace(opt).catch(handleError);
     } else if (isAfter) {
-      const tabStore = useMultipleTabStore();
-      const currentName = unref(currentRoute).name;
-      // 当前 tab
-      const currentIndex = tabStore.getTabList.findIndex((item) => item.name === currentName);
-      // 当前 tab 数量
-      const currentCount = tabStore.getTabList.length;
-      push(opt)
-        .then(() => {
-          if (tabStore.getTabList.length > currentCount) {
-            // 产生新 tab
-            // 新 tab（也是最后一个）
-            const targetIndex = tabStore.getTabList.length - 1;
-            // 新 tab 在 当前 tab 的后面
-            if (currentIndex > -1 && targetIndex > currentIndex) {
-              // 移动 tab
-              tabStore.sortTabs(targetIndex, currentIndex + 1);
-            }
-          }
-        })
-        .catch(handleError);
     } else {
       push(opt).catch(handleError);
     }

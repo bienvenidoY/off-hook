@@ -9,7 +9,6 @@ import { unref } from 'vue';
 import { setRouteChange } from '@/logics/mitt/routeChange';
 import { createPermissionGuard } from './permissionGuard';
 import { createStateGuard } from './stateGuard';
-import nProgress from 'nprogress';
 import projectSetting from '@/settings/projectSetting';
 import { createParamMenuGuard } from './paramMenuGuard';
 
@@ -20,7 +19,6 @@ export function setupRouterGuard(router: Router) {
   createHttpGuard(router);
   createScrollGuard(router);
   createMessageGuard(router);
-  createProgressGuard(router);
   createPermissionGuard(router);
   createParamMenuGuard(router); // must after createPermissionGuard (menu has been built.)
   createStateGuard(router);
@@ -129,18 +127,3 @@ export function createMessageGuard(router: Router) {
   });
 }
 
-export function createProgressGuard(router: Router) {
-  const { getOpenNProgress } = useTransitionSetting();
-  router.beforeEach(async (to) => {
-    if (to.meta.loaded) {
-      return true;
-    }
-    unref(getOpenNProgress) && nProgress.start();
-    return true;
-  });
-
-  router.afterEach(async () => {
-    unref(getOpenNProgress) && nProgress.done();
-    return true;
-  });
-}

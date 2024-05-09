@@ -3,11 +3,8 @@
  * @Description: logo component
 -->
 <template>
-  <div class="anticon" :class="getAppLogoClass" @click="goHome">
+  <div class="h-88px flex w-full items-center justify-center " @click="goHome">
     <img src="../../../assets/images/logo.png" />
-    <div class="ml-2 truncate md:opacity-100" :class="getTitleClass" v-show="showTitle">
-      {{ title }}
-    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -37,13 +34,11 @@
   const { prefixCls } = useDesign('app-logo');
   const { getCollapsedShowTitle } = useMenuSetting();
   const userStore = useUserStore();
-  const { title } = useGlobSetting();
   const go = useGo();
 
   const getAppLogoClass = computed(() => [
     prefixCls,
     props.theme,
-    { 'collapsed-show-title': unref(getCollapsedShowTitle) },
   ]);
 
   const getTitleClass = computed(() => [
@@ -58,36 +53,4 @@
   }
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-app-logo';
-
-  .@{prefix-cls} {
-    display: flex;
-    align-items: center;
-    padding-left: 7px;
-    transition: all 0.2s ease;
-    cursor: pointer;
-
-    &.light {
-      border-bottom: 1px solid @border-color-base;
-    }
-
-    &.collapsed-show-title {
-      padding-left: 20px;
-    }
-
-    &.light &__title {
-      color: @primary-color;
-    }
-
-    &.dark &__title {
-      color: @white;
-    }
-
-    &__title {
-      transition: all 0.5s;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: normal;
-    }
-  }
 </style>

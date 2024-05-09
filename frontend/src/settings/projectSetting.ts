@@ -63,7 +63,7 @@ const setting: ProjectConfig = {
     // Fixed at the top
     fixed: true,
     // Whether to show top
-    show: true,
+    show: false,
     // theme
     theme: ThemeEnum.LIGHT,
     // Whether to enable the lock screen function
@@ -82,11 +82,11 @@ const setting: ProjectConfig = {
   // Menu configuration
   menuSetting: {
     // sidebar menu bg color
-    bgColor: SIDE_BAR_BG_COLOR_LIST[0],
+    bgColor: 'rgb(31 41 55);',
     //  Whether to fix the left menu
     fixed: true,
     // Menu collapse
-    collapsed: false,
+    collapsed: true,
     // When sider hide because of the responsive layout
     siderHidden: false,
     // Whether to display the menu name when folding the menu
@@ -126,7 +126,7 @@ const setting: ProjectConfig = {
   multiTabsSetting: {
     cache: false,
     // Turn on
-    show: true,
+    show: false,
     // Is it possible to drag and drop sorting tabs
     canDrag: true,
     // Turn on quick actions
@@ -143,7 +143,7 @@ const setting: ProjectConfig = {
   transitionSetting: {
     //  Whether to open the page switching animation
     // The disabled state will also disable pageLoading
-    enable: true,
+    enable: false,
 
     // Route basic switching animation
     basicTransition: RouterTransitionEnum.FADE_SIDE,
@@ -163,7 +163,7 @@ const setting: ProjectConfig = {
   lockTime: 0,
 
   // Whether to show breadcrumbs
-  showBreadCrumb: true,
+  showBreadCrumb: false,
 
   // Whether to show the breadcrumb icon
   showBreadCrumbIcon: false,

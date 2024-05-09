@@ -1,14 +1,13 @@
 <template>
-  <LoginFormTitle v-show="getShow" class="enter-x" />
+  <LoginFormTitle class="" />
   <Form
-    class="p-4 enter-x"
+    class="p-4"
     :model="formData"
     :rules="getFormRules"
     ref="formRef"
-    v-show="getShow"
     @keypress.enter="handleLogin"
   >
-    <FormItem name="account" class="enter-x">
+    <FormItem name="account" class="">
       <Input
         size="large"
         v-model:value="formData.account"
@@ -16,7 +15,7 @@
         class="fix-auto-fill"
       />
     </FormItem>
-    <FormItem name="password" class="enter-x">
+    <FormItem name="password" class="">
       <InputPassword
         size="large"
         visibilityToggle
@@ -25,7 +24,7 @@
       />
     </FormItem>
 
-    <ARow class="enter-x">
+    <ARow class="">
       <ACol :span="12">
         <FormItem>
           <!-- No logic, you need to deal with it yourself -->
@@ -44,7 +43,7 @@
       </ACol>
     </ARow>
 
-    <FormItem class="enter-x">
+    <FormItem class="">
       <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
         {{ t('sys.login.loginButton') }}
       </Button>
@@ -99,9 +98,6 @@
   const { validForm } = useFormValid(formRef);
 
   //onKeyStroke('Enter', handleLogin);
-
-  const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
-
   async function handleLogin() {
     const data = await validForm();
     if (!data) return;
@@ -112,13 +108,6 @@
         username: data.account,
         mode: 'none', //不要默认的错误提示
       });
-      if (userInfo) {
-        notification.success({
-          message: t('sys.login.loginSuccessTitle'),
-          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
-          duration: 3,
-        });
-      }
     } catch (error) {
       createErrorModal({
         title: t('sys.api.errorTip'),
