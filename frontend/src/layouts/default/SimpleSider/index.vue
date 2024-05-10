@@ -7,9 +7,9 @@
     <ul class="flex flex-col space-y-2 mt-12">
 
       <li v-for="item in menus" :key="item.path">
-        <RouterLink :to="item.path" class="flex items-center lodePage" data="pass_list">
+        <RouterLink :to="item.path" class="flex items-center" active-class="bg-indigo-700">
                         <span class="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
-                         {{ item.path }}
+                          <SvgIcon :name="item.icon" />
                         </span>
         </RouterLink>
       </li>
@@ -25,6 +25,8 @@ import { useUserStore } from '@/store/modules/user';
 import {useSplitMenu} from "@/layouts/default/SimpleSider/useLayoutMenu";
 import {toRef, defineProps, PropType, unref, computed} from "vue";
 import {MenuSplitTyeEnum} from "@/enums/menuEnum";
+import { SvgIcon } from '@/components/Icon';
+
 const userStore = useUserStore();
 const props = defineProps({
   splitType: {

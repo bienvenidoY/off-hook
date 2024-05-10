@@ -10,7 +10,7 @@ const dashboard: AppRouteModule = {
   redirect: '/dashboard/analysis',
   meta: {
     orderNo: 10,
-    icon: 'ion:grid-outline',
+    icon: 'menu-icon1',
     title: '工作台',
   },
   children: [
