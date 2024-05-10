@@ -1,62 +1,69 @@
 <template>
   <LoginFormTitle class="" />
-  <Form
-    class="p-4"
-    :model="formData"
-    :rules="getFormRules"
-    ref="formRef"
-    @keypress.enter="handleLogin"
-  >
-    <FormItem name="account" class="">
-      <Input
-        size="large"
-        v-model:value="formData.account"
-        :placeholder="t('sys.login.userName')"
-        class="fix-auto-fill"
-      />
-    </FormItem>
-    <FormItem name="password" class="">
-      <InputPassword
-        size="large"
-        visibilityToggle
-        v-model:value="formData.password"
-        :placeholder="t('sys.login.password')"
-      />
-    </FormItem>
+  <ConfigProvider
+    :theme="{
+        algorithm: defaultAlgorithm,
+      }">
+    <Form
+      class="p-4"
+      :model="formData"
+      :rules="getFormRules"
+      ref="formRef"
+      @keypress.enter="handleLogin"
+    >
+      <FormItem name="account" class="">
+        <Input
+          size="large"
+          v-model:value="formData.account"
+          :placeholder="t('sys.login.userName')"
+          class="fix-auto-fill"
+        />
+      </FormItem>
+      <FormItem name="password" class="">
+        <InputPassword
+          size="large"
+          visibilityToggle
+          v-model:value="formData.password"
+          :placeholder="t('sys.login.password')"
+        />
+      </FormItem>
 
-    <ARow class="">
-      <ACol :span="12">
-        <FormItem>
-          <!-- No logic, you need to deal with it yourself -->
-          <Checkbox v-model:checked="rememberMe" size="small">
-            {{ t('sys.login.rememberMe') }}
-          </Checkbox>
-        </FormItem>
-      </ACol>
-      <ACol :span="12">
-<!--        <FormItem :style="{ 'text-align': 'right' }">
-          &lt;!&ndash; No logic, you need to deal with it yourself &ndash;&gt;
-          <Button type="link" size="small" @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">
-            {{ t('sys.login.forgetPassword') }}
-          </Button>
-        </FormItem>-->
-      </ACol>
-    </ARow>
+      <ARow class="">
+        <ACol :span="12">
+          <FormItem>
+            <!-- No logic, you need to deal with it yourself -->
+            <Checkbox v-model:checked="rememberMe" size="small">
+              {{ t('sys.login.rememberMe') }}
+            </Checkbox>
+          </FormItem>
+        </ACol>
+        <ACol :span="12">
+          <!--        <FormItem :style="{ 'text-align': 'right' }">
+                    &lt;!&ndash; No logic, you need to deal with it yourself &ndash;&gt;
+                    <Button type="link" size="small" @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">
+                      {{ t('sys.login.forgetPassword') }}
+                    </Button>
+                  </FormItem>-->
+        </ACol>
+      </ARow>
 
-    <FormItem class="">
-      <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
-        {{ t('sys.login.loginButton') }}
-      </Button>
-      <!-- <Button size="large" class="mt-4 enter-x" block @click="handleRegister">
-        {{ t('sys.login.registerButton') }}
-      </Button> -->
-    </FormItem>
-  </Form>
+      <FormItem class="">
+        <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
+          {{ t('sys.login.loginButton') }}
+        </Button>
+        <!-- <Button size="large" class="mt-4 enter-x" block @click="handleRegister">
+          {{ t('sys.login.registerButton') }}
+        </Button> -->
+      </FormItem>
+    </Form>
+  </ConfigProvider>
+
 </template>
 <script lang="ts" setup>
   import { reactive, ref, unref, computed } from 'vue';
 
-  import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
+  import { Checkbox, Form, Input, Row, Col, Button, Divider, ConfigProvider, theme } from 'ant-design-vue';
+  const { defaultAlgorithm } = theme;
   import {
     GithubFilled,
     WechatFilled,

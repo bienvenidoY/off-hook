@@ -3,7 +3,7 @@
     <div class="absolute w-60 h-60 rounded-xl bg-purple-300 -top-5 -left-16 z-0 transform rotate-45 hidden md:block"></div>
     <div class="absolute w-48 h-48 rounded-xl bg-purple-300 -bottom-6 -right-10 transform rotate-12 hidden md:block"></div>
 
-    <div class="relative pt-12 pb-3 px-12 bg-white rounded-2xl shadow-xl z-20 w-[440px]">
+    <div class="relative pt-12 pb-3 px-12 bg-fff rounded-2xl shadow-xl z-20 w-[440px]">
       <LoginForm />
     </div>
     <div class="w-40 h-40 absolute bg-purple-300 rounded-full top-0 right-12 hidden md:block"></div>
@@ -34,31 +34,6 @@
   @logo-prefix-cls: ~'@{namespace}-app-logo';
   @countdown-prefix-cls: ~'@{namespace}-countdown-input';
   @dark-bg: #293146;
-
-  html[data-theme='dark'] {
-    .@{prefix-cls} {
-      .ant-input,
-      .ant-input-password {
-        background-color: #232a3b;
-      }
-
-      .ant-btn:not(.ant-btn-link, .ant-btn-primary) {
-        border: 1px solid #4a5569;
-      }
-
-      &-form {
-        background: transparent !important;
-      }
-
-      .app-iconify {
-        color: #fff;
-      }
-
-      .ant-divider-inner-text {
-        color: @text-color-secondary;
-      }
-    }
-  }
 
   .@{prefix-cls} {
     min-height: 100%;
