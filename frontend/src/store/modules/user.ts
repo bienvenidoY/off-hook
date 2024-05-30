@@ -94,6 +94,7 @@ export const useUserStore = defineStore({
         const { token, user_info } = data;
         // save token
         this.setToken(token);
+        this.setUserInfo(user_info);
         return this.afterLoginAction(goHome, user_info);
       } catch (error) {
         return Promise.reject(error);

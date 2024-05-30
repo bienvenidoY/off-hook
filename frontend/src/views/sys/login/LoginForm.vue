@@ -111,18 +111,17 @@
     if (!data) return;
     try {
       loading.value = true;
-      console.log(111111,)
       // window.go.main.App.Greet('abc').then((res) => {
       //   console.log(333333, res)
       // })
-      Greet('abc').then(res => {
+      /*Greet('abc').then(res => {
         console.log(333333, res)
-      })
-      // const userInfo = await userStore.login({
-      //   password: data.password,
-      //   username: data.account,
-      //   mode: 'none', //不要默认的错误提示
-      // });
+      })*/
+      const userInfo = await userStore.login({
+        password: data.password,
+        username: data.account,
+        mode: 'none', //不要默认的错误提示
+      });
     } catch (error) {
       createErrorModal({
         title: t('sys.api.errorTip'),

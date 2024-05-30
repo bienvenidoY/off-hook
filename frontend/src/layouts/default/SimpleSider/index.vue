@@ -7,9 +7,9 @@
     <ul class="flex flex-col space-y-2 mt-12">
 
       <li v-for="item in menus" :key="item.path">
-        <RouterLink :to="item.path" class="flex items-center" active-class="bg-indigo-700">
+        <RouterLink :to="item.path" class="flex items-center" active-class="bg-indigo-700 rounded-2xl">
                         <span class="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
-                          <SvgIcon :name="item.icon" />
+                          <SvgIcon :name="item.icon" size="18"/>
                         </span>
         </RouterLink>
       </li>
